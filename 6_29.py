@@ -57,12 +57,19 @@ def getSize(d):
     return len(str(d))
 
 def getPrefix(number, k):
-    prefix = 0
-    i = getSize(number)
-    while k > 0:
-        prefix += (number // (10 ** (i - 1))) * 10 ** (k - 1)
+    if getSize(number) <= k:
+        return number
+    else:
+        prefix = 0
+        i = getSize(number)
+        prefix += number // 10 ** (i - 1) * 10 ** (k - 1)
         k -= 1
-    return prefix
+        i -= 1
+        while k > 0:
+            prefix += ((number // 10 ** (i - 1)) % 10) * 10 ** (k - 1)
+            k -= 1
+            i -= 1
+        return prefix
 
 def main():
     print("main")
