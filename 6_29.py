@@ -34,24 +34,10 @@ def sumOfOddPlace(number):
     return total 
 
 def prefixMatched(number, d):
-    numString = str(number)
-    twoNumString = numString[0] + numString[1]
-
-    if int(numString[0]) == 4:
-        value = 4
-    elif int(numString[0]) == 5:
-        value = 5
-    elif int(numString[0]) == 6:
-        value = 6
-    elif int(twoNumString) == 37:
-        value = 37
+    if getPrefix(number, getSize(d)) == d:
+        True
     else:
-        value = 0
-
-    if value == d:
-        return True
-    else:
-        return False
+        False
 
 def getSize(d):
     return len(str(d))
