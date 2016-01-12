@@ -5,7 +5,12 @@ def isValid(number):
         return False
 
 def getSize(d):
-    return len(str(d))
+    count = 0
+    while d > 0:
+        count += 1
+        d = d//10
+
+    return count
 
 def getDigit(number):
     isSingle = 0
@@ -33,21 +38,26 @@ def getPrefix(number, k):
 
 def sumOfOddPlace(number):
     total = 0
-    numString = str(number)
     size = getSize(number)
-    for i in range(1, size, 2):
-        num = int(numString[i])
-        total += num
+    while number > 0:
+        total += number % 10
+        number = number // 100
     return total
 
 def sumOfDoubleEvenPlace(number):
+    number = number // 10
     total = 0
-    numString = str(number)
     size = getSize(number)
-    for i in range(0, size, 2):
-        num = int(numString[i])
-        editNum = getDigit(num * 2)
-        total += editNum
+    while number > 0:
+        num = (number % 10) * 2
+        if num <= 10:
+            temp1 = num // 10
+            temp2 = num % 10
+            num = temp1 + temp2
+            total += num
+        else:
+            total += num
+        number = number // 100
     return total
 
 def prefixMatched(number, d):
