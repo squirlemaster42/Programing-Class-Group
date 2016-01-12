@@ -50,13 +50,7 @@ def sumOfDoubleEvenPlace(number):
     size = getSize(number)
     while number > 0:
         num = (number % 10) * 2
-        if num <= 10:
-            temp1 = num // 10
-            temp2 = num % 10
-            num = temp1 + temp2
-            total += num
-        else:
-            total += num
+        total += getDigit(num)
         number = number // 100
     return total
 
@@ -67,7 +61,15 @@ def prefixMatched(number, d):
         return False
 
 def main():
-    creditCard = eval(input("Enter a credit card number to be tested here: "))
+    try:
+        creditCard = eval(input("Enter a credit card number to be tested here: "))
+    except SyntaxError:
+        print("You must enter a number.")
+        main()
+    except NameError:
+        print("You must enter a number.")
+        main()
+
     if isValid(creditCard):
         print("That credit card is valid.")
     else:
